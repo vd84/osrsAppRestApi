@@ -12,10 +12,6 @@ public class BucketListContr {
     @Autowired
     BucketListRepo bucketRepository;
 
-    @GetMapping(value = "/")
-    public ResponseEntity index() {
-        return ResponseEntity.ok(bucketRepository.findAll());
-    }
 
     @GetMapping(value = "/bucket")
     public ResponseEntity getBucket(@RequestParam(value="id") Long id) {
