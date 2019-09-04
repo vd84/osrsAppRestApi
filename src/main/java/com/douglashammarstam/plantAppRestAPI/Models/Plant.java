@@ -24,6 +24,7 @@ public class Plant {
     private int userId;
     @Column(name = "plant_caring_id")
     private int plantCaringId;
+    private String imgUrl;
 
 
     public void incrementLikes() {
@@ -84,5 +85,13 @@ public class Plant {
 
     public void setPlantCaringId(int plantCaringId) {
         this.plantCaringId = plantCaringId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 }
