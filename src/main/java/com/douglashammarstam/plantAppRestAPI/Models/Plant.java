@@ -22,6 +22,8 @@ public class Plant {
     private int likes;
     @Column(name = "user_id")
     private int userId;
+    @Column(name = "plant_caring_id")
+    private int plantCaringId;
 
 
     public void incrementLikes() {
@@ -74,5 +76,13 @@ public class Plant {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getPlantCaringId() {
+        return plantCaringId;
+    }
+
+    public void setPlantCaringId(int plantCaringId) {
+        this.plantCaringId = plantCaringId;
     }
 }
