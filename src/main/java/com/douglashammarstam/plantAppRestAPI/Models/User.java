@@ -10,7 +10,10 @@ import java.util.List;
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(name = "getAllUsers",
                                     procedureName = "getAllUsers",
-                                    resultClasses = User.class)
+                                    resultClasses = User.class),
+        @NamedStoredProcedureQuery(name = "sproc_login",
+                procedureName = "sproc_login",
+                resultClasses = User.class)
 })
 public class User {
 
