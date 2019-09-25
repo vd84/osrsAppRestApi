@@ -77,4 +77,30 @@ public class PlantService {
 
     }
 
+    @RequestMapping(value = "/plant/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<Plant>> getSpecificUsersPlants(@PathVariable int id){
+
+
+        Iterable<Plant> plants = plantRepository.findPlantsWithSpecificUserId(id);
+
+
+        List<Plant> target = new ArrayList<>();
+        plants.forEach(target::add);
+
+        if (target.isEmpty()) {
+            System.out.println("Does not not have any plants");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        } else {
+            System.out.println("plants found");
+            return new ResponseEntity<>(target, HttpStatus.OK);
+
+        }
+
+
+
+
+    }
+
+
 }

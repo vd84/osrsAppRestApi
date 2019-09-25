@@ -15,13 +15,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CrossOrigin("*")
+@CrossOrigin(origins = "*")
 @RestController
 public class UserService {
 
     @Autowired
     UserRepository userRepository;
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getAllUsers() {
 
@@ -32,6 +33,7 @@ public class UserService {
         return new ResponseEntity<>(target, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<List<User>> addUser(@RequestBody User user) {
 
@@ -48,6 +50,7 @@ public class UserService {
 
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/login/{username}", method = RequestMethod.GET)
     public ResponseEntity<List<User>> loginUser(@PathVariable("username") String username) {
 
