@@ -1,11 +1,11 @@
 package com.douglashammarstam.plantAppRestAPI.Repos;
 
-import com.douglashammarstam.plantAppRestAPI.Models.User;
+import com.douglashammarstam.plantAppRestAPI.Models.Account;
 import org.springframework.data.repository.CrudRepository;
 
 
 
-public interface UserRepository extends CrudRepository<User, Integer>, UserRepositoryCustom {
+public interface UserRepository extends CrudRepository<Account, Integer>, UserRepositoryCustom {
 
 }
 

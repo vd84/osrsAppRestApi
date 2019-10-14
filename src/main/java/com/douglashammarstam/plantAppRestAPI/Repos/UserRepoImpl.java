@@ -2,14 +2,13 @@ package com.douglashammarstam.plantAppRestAPI.Repos;
 
 
 
-import com.douglashammarstam.plantAppRestAPI.Models.User;
+import com.douglashammarstam.plantAppRestAPI.Models.Account;
 
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.util.List;
-import java.util.Optional;
 
 public class UserRepoImpl implements UserRepositoryCustom {
 
@@ -17,7 +16,7 @@ public class UserRepoImpl implements UserRepositoryCustom {
     private EntityManager em;
 
     @Override
-    public List<User> login(String name) {
+    public List<Account> login(String name) {
 
         StoredProcedureQuery storedProcedureQuery =  em.createNamedStoredProcedureQuery("check_if_user_exists");
 

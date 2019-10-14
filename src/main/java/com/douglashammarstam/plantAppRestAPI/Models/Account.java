@@ -3,29 +3,31 @@ package com.douglashammarstam.plantAppRestAPI.Models;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
 @NamedStoredProcedureQueries({
         @NamedStoredProcedureQuery(name = "getAllUsers",
                                     procedureName = "getAllUsers",
-                                    resultClasses = User.class),
+                                    resultClasses = Account.class),
         @NamedStoredProcedureQuery(name = "sproc_login",
                 procedureName = "sproc_login",
-                resultClasses = User.class)
+                resultClasses = Account.class)
 })
-public class User {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
-    private String username;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private List<Plant> userPlants;
+    private String username;
+    private String password;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stats_id", referencedColumnName = "id")
+    private Stats stats;
+
 
     public int getId() {
         return id;
@@ -43,12 +45,20 @@ public class User {
         this.username = username;
     }
 
-    public List<Plant> getUserPlants() {
-        return userPlants;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserPlants(List<Plant> userPlants) {
-        this.userPlants = userPlants;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Stats getStats() {
+        return stats;
+    }
+
+    public void setStats(Stats stats) {
+        this.stats = stats;
     }
 }
 

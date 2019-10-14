@@ -1,7 +1,7 @@
 package com.douglashammarstam.plantAppRestAPI.Services;
 
-import com.douglashammarstam.plantAppRestAPI.Models.Plant;
-import com.douglashammarstam.plantAppRestAPI.Models.User;
+import com.douglashammarstam.plantAppRestAPI.Models.Account;
+import com.douglashammarstam.plantAppRestAPI.Models.Stats;
 import com.douglashammarstam.plantAppRestAPI.Repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,49 +16,63 @@ import java.util.Optional;
 @Service
 @CrossOrigin(origins = "*")
 @RestController
-public class UserService {
+public class AccountService {
 
     @Autowired
     UserRepository userRepository;
 
+
+
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> getAllUsers() {
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Account> getOneAccount(@PathVariable("id") int id) {
 
-        Iterable<User> users = userRepository.findAll();
 
-        List<User> target = new ArrayList<>();
-        users.forEach(target::add);
-        return new ResponseEntity<>(target, HttpStatus.OK);
+
+        if(!userRepository.findById(id).isPresent()){
+            System.out.println("No account found");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Account account = userRepository.findById(id).get();
+
+        return new ResponseEntity<>(account, HttpStatus.OK);
+
+
+
+
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public ResponseEntity<List<User>> addUser(@RequestBody User user) {
+    public ResponseEntity<List<Account>> addAccount(@RequestBody Account account) {
 
-        Optional<User> userOptional = userRepository.findById(user.getId());
+        Optional<Account> userOptional = userRepository.findById(account.getId());
 
         if (userOptional.isPresent()) {
-            System.out.println("User already exists");
+            System.out.println("Account already exists");
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         } else {
-            userRepository.save(user);
+            account.setStats(new Stats(account.getUsername()));
+            userRepository.save(account);
             return new ResponseEntity<>(HttpStatus.CREATED);
 
         }
 
     }
 
+
+
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/user/login/{username}", method = RequestMethod.GET)
-    public ResponseEntity<List<User>> loginUser(@PathVariable("username") String username) {
+    public ResponseEntity<List<Account>> login(@PathVariable("username") String username) {
 
         System.out.println(username);
 
 
-        Iterable<User> users = userRepository.login(username);
+        Iterable<Account> users = userRepository.login(username);
 
-        List<User> target = new ArrayList<>();
+        List<Account> target = new ArrayList<>();
         users.forEach(target::add);
 
         if (target.isEmpty()) {
@@ -73,6 +86,7 @@ public class UserService {
         }
 
     }
+
 
 
 }
