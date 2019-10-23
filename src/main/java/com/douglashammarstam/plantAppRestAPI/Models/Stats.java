@@ -14,12 +14,12 @@ public class Stats {
     private int id;
     private int overAllLvl;
     private int atkLvl;
-    private int strLvl;
     private int defLvl;
+    private int strLvl;
     private int hpLvl;
     private int rngLvl;
-    private int magLvl;
     private int prayLvl;
+    private int magLvl;
     private int CookLvl;
     private int wcLvl;
     private int fletchLvl;
@@ -92,7 +92,7 @@ public class Stats {
 
                 if (i % 2 != 0) {
                     try {
-                        fieldsForThisClass[i/2 + 1].setInt(this, Integer.parseInt(stats[i]));
+                        fieldsForThisClass[i / 2 + 1].setInt(this, Integer.parseInt(stats[i]));
 
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
@@ -105,7 +105,6 @@ public class Stats {
 
         }
         System.out.println(this.toString());
-
 
 
     }

@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 
 
-public interface UserRepository extends CrudRepository<Account, Integer>, UserRepositoryCustom {
+public interface AccountRepo extends CrudRepository<Account, Integer>, AccountRepoCustom {
 
 }
 
