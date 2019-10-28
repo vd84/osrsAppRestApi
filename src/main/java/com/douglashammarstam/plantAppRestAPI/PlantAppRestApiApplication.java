@@ -1,9 +1,6 @@
 package com.douglashammarstam.plantAppRestAPI;
 
-import com.douglashammarstam.plantAppRestAPI.Models.GrandExchangeHelper;
-import com.douglashammarstam.plantAppRestAPI.Models.OsrsItem;
-import com.douglashammarstam.plantAppRestAPI.Models.StatApiFetcher;
-import com.douglashammarstam.plantAppRestAPI.Models.Stats;
+import com.douglashammarstam.plantAppRestAPI.Models.*;
 import com.douglashammarstam.plantAppRestAPI.Services.GrandExchangeService;
 import com.douglashammarstam.plantAppRestAPI.Services.OsrsItemService;
 import org.json.simple.JSONArray;
@@ -35,8 +32,8 @@ public class PlantAppRestApiApplication {
     public static void main(String[] args) throws IOException, ParseException, NoSuchFieldException, IllegalAccessException {
         SpringApplication.run(PlantAppRestApiApplication.class, args);
 
-        Stats stats = new Stats("meowthfrsts");
-        System.out.println(stats.toString());
+
+        OsrsMonsterFetcher osrsMonsterFetcher = new OsrsMonsterFetcher();
 
         }
 

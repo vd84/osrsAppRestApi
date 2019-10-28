@@ -2,7 +2,6 @@ package com.douglashammarstam.plantAppRestAPI.Services;
 
 import com.douglashammarstam.plantAppRestAPI.Models.GrandExchangeHelper;
 import com.douglashammarstam.plantAppRestAPI.Models.OsrsItem;
-import com.douglashammarstam.plantAppRestAPI.Repos.OsrsItemrepositoryCustom;
 import com.douglashammarstam.plantAppRestAPI.Repos.OsrsitemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Connection;
 import java.util.List;
 
 
@@ -48,7 +46,7 @@ public class OsrsItemService {
 
 
 
-    }
+}
 
 
     @CrossOrigin(origins = "*")
@@ -90,7 +88,17 @@ public class OsrsItemService {
 
         int id = osrsitemRepository.findByTitle(itemName).getId();
 
-        return  grandExchangeHelper.lookUpItem(id);
+        return  grandExchangeHelper.getOneItemDetails(id);
+
+
+    }
+
+
+    public void addTodaysPricesForAllItems() {
+
+
+
+
 
 
     }
