@@ -3,6 +3,7 @@ package com.douglashammarstam.plantAppRestAPI.Models;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,6 +28,11 @@ public class Account {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "stats_id", referencedColumnName = "id")
     private Stats stats;
+
+    
+    private List<Quest> quests;
+
+
 
 
     public int getId() {
