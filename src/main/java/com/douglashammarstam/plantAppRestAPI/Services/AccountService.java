@@ -1,6 +1,7 @@
 package com.douglashammarstam.plantAppRestAPI.Services;
 
 import com.douglashammarstam.plantAppRestAPI.Models.Account;
+import com.douglashammarstam.plantAppRestAPI.Models.Goal;
 import com.douglashammarstam.plantAppRestAPI.Models.StatApiFetcher;
 import com.douglashammarstam.plantAppRestAPI.Models.Stats;
 import com.douglashammarstam.plantAppRestAPI.Repos.AccountRepo;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +76,41 @@ public class AccountService {
         return new ResponseEntity<>(account, HttpStatus.CREATED);
 
     }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/user/reachedGoal/{username}", method = RequestMethod.POST)
+    public ResponseEntity<Boolean> hasAccountReachedGoal(@PathVariable String username){
+
+
+        Account account = accountRepo.findUserByName(username);
+
+
+        if(account == null || account.getGoals().isEmpty()){
+            System.out.println("No goals for this account");
+            return null;
+        }
+
+        for (Goal g : account.getGoals()){
+            for(Field f : account.getClass().getDeclaredFields())
+            if (g.getTypeOfStat().equals(f.getName())) {
+                System.out.println("foundGoalStat");
+            }
+        }
+
+
+
+        return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+
+
+
+
+
+
+
+    }
+
+
+
 
 
 
