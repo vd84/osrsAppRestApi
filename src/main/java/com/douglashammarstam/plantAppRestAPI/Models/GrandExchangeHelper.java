@@ -1,14 +1,11 @@
 package com.douglashammarstam.plantAppRestAPI.Models;
 
-import org.springframework.context.annotation.Bean;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
+import java.util.List;
 
 
 public class GrandExchangeHelper {
@@ -20,7 +17,7 @@ public class GrandExchangeHelper {
 
     }
 
-    public String lookUpItem(int itemId){
+    public String getOneItemDetails(int itemId){
         System.out.println(itemId);
 
         String itemInformation = "";
@@ -60,4 +57,19 @@ public class GrandExchangeHelper {
 
 
     }
+
+
+
+    public int getCurrentPriceForOneItem(int itemId){
+
+
+        String[] itemDetails = getOneItemDetails(itemId).split(",");
+        String s = (itemDetails[8].split(":")[1].split("}")[0]);
+
+        System.out.println(s);
+        return Integer.parseInt(s);
+
+    }
+
+
 }

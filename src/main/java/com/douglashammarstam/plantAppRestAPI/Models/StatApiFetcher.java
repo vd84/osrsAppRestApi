@@ -14,7 +14,7 @@ public class StatApiFetcher {
 
     private String statJson;
 
-    StatApiFetcher(String accountName) throws IOException {
+    public StatApiFetcher(String accountName) throws IOException {
         try {
             URL url = new URL(HISCOREAPIURL + accountName);
 
@@ -45,7 +45,7 @@ public class StatApiFetcher {
         return HISCOREAPIURL;
     }
 
-    String getStatJson() {
+    public String getStatJson() {
         return statJson;
     }
 

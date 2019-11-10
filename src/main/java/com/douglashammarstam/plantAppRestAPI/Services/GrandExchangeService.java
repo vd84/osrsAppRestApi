@@ -1,8 +1,12 @@
 package com.douglashammarstam.plantAppRestAPI.Services;
 
+import com.douglashammarstam.plantAppRestAPI.Models.Account;
 import com.douglashammarstam.plantAppRestAPI.Models.GrandExchangeHelper;
+import com.douglashammarstam.plantAppRestAPI.Repos.OsrsItemrepositoryCustom;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,24 +22,8 @@ import java.io.IOException;
 public class GrandExchangeService {
 
 
-    private GrandExchangeHelper grandExchangeHelper = new GrandExchangeHelper();
-
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/ge/{id}", method = RequestMethod.GET)
-    public ResponseEntity<String> getOneItem(@PathVariable("id") int id) {
 
 
-        String itemFetched = grandExchangeHelper.lookUpItem(id);
-
-        if (itemFetched == null) {
-            System.out.println("Problem reciveing item");
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(itemFetched, HttpStatus.OK);
-
-
-    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/ge/all", method = RequestMethod.GET)
@@ -58,6 +46,15 @@ public class GrandExchangeService {
 
         return new ResponseEntity<>(returnString, HttpStatus.OK);
     }
+
+
+
+
+
+
+
+
+
 
 
 
