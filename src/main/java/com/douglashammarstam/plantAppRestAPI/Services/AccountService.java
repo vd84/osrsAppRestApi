@@ -1,8 +1,7 @@
 package com.douglashammarstam.plantAppRestAPI.Services;
 
 import com.douglashammarstam.plantAppRestAPI.Models.Account;
-import com.douglashammarstam.plantAppRestAPI.Models.Goal;
-import com.douglashammarstam.plantAppRestAPI.Models.StatApiFetcher;
+import com.douglashammarstam.plantAppRestAPI.Models.StatGoal;
 import com.douglashammarstam.plantAppRestAPI.Models.Stats;
 import com.douglashammarstam.plantAppRestAPI.Repos.AccountRepo;
 import com.douglashammarstam.plantAppRestAPI.Repos.StatsRepo;
@@ -14,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @CrossOrigin(origins = "*")
@@ -85,12 +81,12 @@ public class AccountService {
         Account account = accountRepo.findUserByName(username);
 
 
-        if(account == null || account.getGoals().isEmpty()){
+        if(account == null || account.getStatGoals().isEmpty()){
             System.out.println("No goals for this account");
             return null;
         }
 
-        for (Goal g : account.getGoals()){
+        for (StatGoal g : account.getStatGoals()){
             for(Field f : account.getClass().getDeclaredFields())
             if (g.getTypeOfStat().equals(f.getName())) {
                 System.out.println("foundGoalStat");

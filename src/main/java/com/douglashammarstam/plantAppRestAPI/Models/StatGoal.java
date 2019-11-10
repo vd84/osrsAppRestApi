@@ -10,7 +10,7 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Goal {
+public class StatGoal {
 
 
     @Id

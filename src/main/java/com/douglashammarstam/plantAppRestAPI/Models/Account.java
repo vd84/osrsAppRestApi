@@ -22,15 +22,24 @@ public class Account {
 
 
 
-    private ArrayList<Goal> goals;
+    private ArrayList<StatGoal> statGoals;
 
-
-    public ArrayList<Goal> getGoals() {
-        return goals;
+    public ArrayList<Quest> getQuests() {
+        return quests;
     }
 
-    public void setGoals(ArrayList<Goal> goals) {
-        this.goals = goals;
+    public void setQuests(ArrayList<Quest> quests) {
+        this.quests = quests;
+    }
+
+    private ArrayList<Quest> quests;
+
+    public ArrayList<StatGoal> getStatGoals() {
+        return statGoals;
+    }
+
+    public void setStatGoals(ArrayList<StatGoal> statGoals) {
+        this.statGoals = statGoals;
     }
 
     public int getId() {
