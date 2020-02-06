@@ -32,6 +32,7 @@ public class PlantAppRestApiApplication {
     public static void main(String[] args) throws IOException, ParseException, NoSuchFieldException, IllegalAccessException {
         SpringApplication.run(PlantAppRestApiApplication.class, args);
 
+        System.out.println("hello");
 
         OsrsMonsterFetcher osrsMonsterFetcher = new OsrsMonsterFetcher();
 
